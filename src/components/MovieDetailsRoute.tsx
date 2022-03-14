@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import MovieCard from "../models/MovieCard";
 import MovieDetailsResponse from "../models/MovieDetailsResponse";
 import SingleMovie from "../models/SingleMovie";
@@ -21,7 +22,9 @@ const MovieDetailsRoute = () => {
   return (
     <div className="MovieDetailsRoute">
       <p>
-        <i className="fa-solid fa-backward-fast"></i>
+        <Link to="/">
+          <i className="fa-solid fa-backward-fast"></i>
+        </Link>
         <i className="fa-solid fa-flag"></i>
       </p>
       <img
@@ -31,7 +34,7 @@ const MovieDetailsRoute = () => {
       <div>
         <p>
           {/* just need year for the title release date */}
-          {movie?.title} - ({movie?.release_date}){" "}
+          {movie?.title} - ({movie?.release_date.substring(0, 4)}){" "}
         </p>{" "}
         {movie?.vote_average}
         <i className="fa-solid fa-star"></i>
@@ -41,7 +44,7 @@ const MovieDetailsRoute = () => {
         {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
         {movie?.release_date}
       </p>
-      <p>{movie?.runtime}</p>
+      <p>Run Time: {movie?.runtime}M</p>
       <h3>Overview</h3>
       <p>{movie?.overview}</p>
     </div>

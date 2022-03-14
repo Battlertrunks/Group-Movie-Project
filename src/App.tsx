@@ -18,6 +18,7 @@ function App() {
         <FilterBar />
         <Routes>
           <Route path="/" element={<MovieGallery />} />
+          <Route path="/search/movie" element={<MovieGallery />} />
           <Route path="/movie/:id" element={<MovieDetailsRoute />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
