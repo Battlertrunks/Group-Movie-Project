@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MovieCard from "../models/MovieCard";
 import "./Card.css";
 
@@ -9,7 +10,12 @@ interface Props {
 const Card = ({ singleMovieCard }: Props) => {
   return (
     <li className="Card">
-      <img src={singleMovieCard?.poster_path} alt={singleMovieCard?.title} />
+      <Link to={`/movie/${encodeURIComponent(singleMovieCard.id?.toString())}`}>
+        <img
+          src={`https://image.tmdb.org/t/p/original${singleMovieCard?.poster_path}`}
+          alt={singleMovieCard?.title}
+        />
+      </Link>
       <div>
         <p>
           {singleMovieCard?.vote_average}
