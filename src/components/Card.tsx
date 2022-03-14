@@ -1,4 +1,5 @@
-import MovieCard from "../models/MovieCardResponse";
+import React from "react";
+import MovieCard from "../models/MovieCard";
 import "./Card.css";
 
 interface Props {
@@ -7,18 +8,18 @@ interface Props {
 
 const Card = ({ singleMovieCard }: Props) => {
   return (
-    <div className="Card">
-      <img src={singleMovieCard.poster_path} alt={singleMovieCard.title} />
+    <li className="Card">
+      <img src={singleMovieCard?.poster_path} alt={singleMovieCard?.title} />
       <div>
         <p>
-          {singleMovieCard.vote_average}
+          {singleMovieCard?.vote_average}
           <i className="fa-solid fa-star"></i>
         </p>
-        <p>{singleMovieCard.genre}</p>
+        <p>{singleMovieCard?.genre}</p>
       </div>
-      <h2>{singleMovieCard.title}</h2>
+      <h2>{singleMovieCard?.title}</h2>
       <button>Details</button>
-    </div>
+    </li>
   );
 };
 
