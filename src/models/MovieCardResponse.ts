@@ -1,6 +1,7 @@
 export default interface MovieCard {
   genre: string;
   title: string;
-  rating: number;
+  vote_average: number;
+  poster_path: string;
   id?: number;
 }
