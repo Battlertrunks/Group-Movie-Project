@@ -3,5 +3,5 @@ export default interface MovieCard {
   title: string;
   vote_average: number;
   poster_path: string;
-  id?: number;
+  id: number;
 }
