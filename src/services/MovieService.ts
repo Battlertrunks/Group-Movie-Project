@@ -25,3 +25,15 @@ export const getMovieById = (id: string): Promise<MovieDetailsResponse> => {
       return response.data;
     });
 };
+
+export const getMovieBySearch = (
+  search: string
+): Promise<MovieCardResponse> => {
+  return axios
+    .get(`https://developers.themoviedb.org/3/search/movie`, {
+      params: { api_key: key, q: search },
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
