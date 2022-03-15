@@ -1,16 +1,19 @@
 import { createContext } from "react";
+import { NullLiteral } from "typescript";
 import MovieCard from "../models/MovieCard";
 
 interface MovieContextModel {
-  movies: MovieCard[];
   watchedMovie: MovieCard[];
-  filterMovies: (sort: string, genre: string, rating: number) => void;
+  addWatched: (movie: MovieCard) => void;
+  removeWatched: (id: number) => void;
+  isWatched: (id: number) => boolean;
 }
 
 const defaultValues: MovieContextModel = {
-  movies: [],
   watchedMovie: [],
-  filterMovies: () => {},
+  addWatched: () => {},
+  removeWatched: () => {},
+  isWatched: () => false,
 };
 
 const MovieContext = createContext(defaultValues);

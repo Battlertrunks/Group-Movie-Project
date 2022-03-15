@@ -11,7 +11,9 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <button>Watched</button>
+            <Link to="/movie/watched">
+              <button>Watched</button>
+            </Link>
           </li>
           <li>
             <button>Favorites</button>
