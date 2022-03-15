@@ -1,0 +1,17 @@
+.SearchInput {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.SearchInput button {
+  margin: 0 15px;
+  padding: 5px;
+  background-color: #81bbc7;
+  border-radius: 5px;
+}
+
+.SearchInput input {
+  border-radius: 25px;
+  padding: 5px;
+  width: 50%;
+}

@@ -1,3 +1,35 @@
-.Header {
+/* .Header {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.Header img {
+  height: 100px;
+}
+
+.Header .logo {
+  text-decoration: none;
+}
+
+.Header li {
+  list-style: none;
+}
+
+.Header h1 {
+  display: flex;
+  align-items: center;
+}
+
+.Header button {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  color: white;
+}
+
+.Header .header-bg-color {
   background-color: #81bbc7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
