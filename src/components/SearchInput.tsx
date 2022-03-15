@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./SearchInput.css";
 
 const SearchInput = () => {
-  const [term, setTerm] = useState("");
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
-    navigate(`/search/movie
-    ?${new URLSearchParams({ term })}`);
+    navigate(`/search/movie?${new URLSearchParams({ query })}`);
   };
 
   return (
@@ -18,7 +17,7 @@ const SearchInput = () => {
         name="search-movie"
         id="search-movie"
         placeholder="Search"
-        onChange={(e) => setTerm(e.target.value)}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <button>Search Icon</button>
     </form>
