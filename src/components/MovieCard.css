@@ -1,3 +1,40 @@
 .Card img {
-  width: 300px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 200px;
+}
+
+.Card i {
+  color: #81bbc7;
+}
+
+.Card {
+  background-color: #2e3d47;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  border-radius: 5px;
+}
+
+.Card h2 {
+  height: 60px;
+  font-size: 1.25rem;
+}
+
+.Card li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Card .card-text-content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.Card .ratings i {
+  color: yellow;
 }
