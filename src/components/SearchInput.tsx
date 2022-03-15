@@ -7,7 +7,7 @@ const SearchInput = () => {
   const navigate = useNavigate();
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
-    navigate(`/search/movie?${new URLSearchParams({ query })}`);
+    navigate(`/search/movies?${new URLSearchParams({ query })}`);
   };
 
   return (
