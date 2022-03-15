@@ -1,0 +1,13 @@
+.FilterBar {
+  background-color: #81bbc7;
+  margin: 15px;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.FilterBar select {
+  margin: 3px;
+  padding: 2px;
+  border-radius: 5px;
+}

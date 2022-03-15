@@ -21,31 +21,31 @@ const Card = ({ singleMovieCard }: Props) => {
           alt={singleMovieCard?.title}
         />
       </Link>
-      <div>
-        <p>
+      <div className="card-text-content">
+        <div className="ratings">
           {singleMovieCard?.vote_average}
           <i className="fa-solid fa-star"></i>
-          {/* Finds whether the user has watched or not have liked a movie */}
-          {isWatched(singleMovieCard.id) ? (
-            <i
-              className="fa-solid fa-trash-can"
-              onClick={() => {
-                removeWatched(singleMovieCard.id);
-              }}
-            ></i>
-          ) : (
-            <i
-              className="fa-solid fa-clapperboard"
-              onClick={() => {
-                addWatched(singleMovieCard);
-              }}
-            ></i>
-          )}
-        </p>
+        </div>
+        {/* Finds whether the user has watched or not have liked a movie */}
+        {isWatched(singleMovieCard.id) ? (
+          <i
+            className="fa-solid fa-trash-can"
+            onClick={() => {
+              removeWatched(singleMovieCard.id);
+            }}
+          ></i>
+        ) : (
+          <i
+            className="fa-solid fa-clapperboard"
+            onClick={() => {
+              addWatched(singleMovieCard);
+            }}
+          ></i>
+        )}
+
         {/* <p>{singleMovieCard?.genre}</p> */}
       </div>
       <h2>{singleMovieCard?.title}</h2>
-      <button>Details</button>
     </li>
   );
 };
