@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import MovieContext from "../context/MovieContext";
 import MovieCard from "../models/MovieCard";
 import "./Card.css";
 
@@ -8,6 +9,8 @@ interface Props {
 }
 
 const Card = ({ singleMovieCard }: Props) => {
+  const { watchedMovie, addWatched, removeWatched, isWatched } =
+    useContext(MovieContext);
   return (
     <li className="Card">
       <Link to={`/movie/${encodeURIComponent(singleMovieCard.id?.toString())}`}>
@@ -20,6 +23,22 @@ const Card = ({ singleMovieCard }: Props) => {
         <p>
           {singleMovieCard?.vote_average}
           <i className="fa-solid fa-star"></i>
+
+          {isWatched(singleMovieCard.id) ? (
+            <i
+              className="fa-solid fa-trash-can"
+              onClick={() => {
+                removeWatched(singleMovieCard.id);
+              }}
+            ></i>
+          ) : (
+            <i
+              className="fa-solid fa-clapperboard"
+              onClick={() => {
+                addWatched(singleMovieCard);
+              }}
+            ></i>
+          )}
         </p>
         <p>{singleMovieCard?.genre}</p>
       </div>

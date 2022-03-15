@@ -4,4 +4,5 @@ export default interface MovieCard {
   vote_average: number;
   poster_path: string;
   id: number;
+  isFav: boolean;
 }
