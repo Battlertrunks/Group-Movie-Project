@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import MovieContext from "../context/MovieContext";
-import MovieContextProvider from "../context/MovieContextProvider";
-import Card from "./Card";
-import "./WatchedMovieGallery.css";
+import Card from "./MovieCard";
+import "./WatchedMovieGalleryRoute.css";
 
 const WatchedMovieGallery = () => {
+  // Destructures the watchedMovie useState variable
   const { watchedMovie } = useContext(MovieContext);
+
+  // Displays to the user their watched movies
   return (
-    <div className="WatchedMovieGallery">
+    <div className="WatchedMovieGalleryRoute">
       {watchedMovie.map((item) => {
         return <Card singleMovieCard={item} key={item.id} />;
       })}

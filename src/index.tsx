@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import MovieContextProvider from "./context/MovieContextProvider";
 
+// Wrapping the provider to use the context.
 ReactDOM.render(
   <React.StrictMode>
     <MovieContextProvider>

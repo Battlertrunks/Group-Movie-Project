@@ -3,6 +3,7 @@ import "./Header.css";
 import SearchInput from "./SearchInput";
 
 const Header = () => {
+  // The Links direct the user to the designated path.
   return (
     <header className="Header">
       <Link to="/">

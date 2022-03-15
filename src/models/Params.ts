@@ -1,3 +1,4 @@
+// Our filter needs at least one of these strings in order to use filter search.
 export default interface Params {
   api_key?: string;
   "vote_average.gte"?: string;
