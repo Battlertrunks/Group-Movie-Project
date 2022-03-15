@@ -1,3 +1,7 @@
 .MovieDetailsRoute img {
   height: 250px;
 }
+
+.MovieDetailsRoute i {
+  font-size: 40px;
+}

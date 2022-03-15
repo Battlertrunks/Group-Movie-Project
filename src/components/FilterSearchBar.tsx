@@ -1,33 +1,36 @@
 import { FormEvent, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import Genres from "../models/Genres";
+import { useNavigate } from "react-router";
+import Genre from "../models/Genre";
 import Params from "../models/Params";
-import QueryStringParams from "../models/QueryStringParams";
-import { getGenres } from "../services/MovieService";
-import "./FilterBar.css";
+import { getGenres } from "../services/MovieTMDBService";
+import "./FilterSearchBar.css";
 
 const FilterBar = () => {
+  // Initializing the useStates we are going to need.
   const [sortBy, setSortBy] = useState("");
   const [genre, setGenre] = useState("");
   const [voteAverageGTE, setVoteAverageGTE] = useState("");
   const [voteAverageLTE, setVoteAverageLTE] = useState("");
-  const [genres, setGenres] = useState<Genres[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
   const navigate = useNavigate();
 
+  // Runs when user submits the filter form.
   const submitHandler = (e: FormEvent) => {
-    e.preventDefault();
-    // navigate(`/discover/movie?${new URLSearchParams({ genre })}`);
+    e.preventDefault(); // prevents website reload.
+    // Checks if their are values in the selects, if so makes it into an object.
     const queryStringParams: Params = {
       ...(genre ? { with_genres: genre! } : {}),
       ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
       ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
       ...(sortBy ? { sort_by: sortBy! } : {}),
     };
-    console.log(queryStringParams);
 
+    // Navigates to the URL path and inserts the params using the spread.
     navigate(`/search/movies?${new URLSearchParams({ ...queryStringParams })}`);
   };
 
+  // Runs once on every load.
+  // Gets all of the genres names and IDs for the select element.
   useEffect(() => {
     getGenres().then((response) => setGenres(response.genres));
   }, []);
@@ -50,7 +53,9 @@ const FilterBar = () => {
         onChange={(e) => setGenre(e.target.value)}
       >
         {genres.map((genre) => (
-          <option value={genre.id}>{genre.name}</option>
+          <option value={genre.id} key={genre.id}>
+            {genre.name}
+          </option>
         ))}
       </select>
       <label htmlFor="rating">Rating:</label>

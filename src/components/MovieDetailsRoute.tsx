@@ -1,31 +1,71 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import MovieCard from "../models/MovieCard";
+import MovieContext from "../context/MovieContext";
 import MovieDetailsResponse from "../models/MovieDetailsResponse";
-import SingleMovie from "../models/SingleMovie";
-import { getMovieById } from "../services/MovieService";
+import { getMovieById } from "../services/MovieTMDBService";
+import MovieCard from "../models/MovieCard";
 import "./MovieDetailsRoute.css";
 
-const MovieDetailsRoute = () => {
-  const [movie, setMovie] = useState<MovieDetailsResponse>();
-  const id: string | undefined = useParams().id;
-  const [genres, setGenres] = useState([]);
+// interface Props {
+//   singleMovieCard: MovieCard;
+// }
 
+const MovieDetailsRoute = () => {
+  const { addWatched, removeWatched, isWatched } = useContext(MovieContext);
+  // Creating useState to set the movie details information and giving it a guide line of what it needs.
+  const [movie, setMovie] = useState<MovieDetailsResponse>();
+  let movieToAdd: MovieCard | undefined;
+  if (movie) {
+    movieToAdd = {
+      genre: movie?.genres[0].name[0],
+      title: movie?.title,
+      vote_average: movie?.vote_average,
+      poster_path: movie?.poster_path,
+      id: movie?.id,
+    };
+  }
+  // Getting the movie's ID if it is not undefined.
+  const id: string | undefined = useParams().id;
+
+  // Runs useEffect when once and when the id changes from the dependency.
   useEffect(() => {
+    // Retriving the movie ID
     getMovieById(id!).then((response) => {
-      console.log(response);
       setMovie(response);
     });
   }, [id]);
-  console.log(id);
+
+  // Displaying the movie's information to the screen
   return (
     <div className="MovieDetailsRoute">
       <p>
         <Link to="/">
           <i className="fa-solid fa-backward-fast"></i>
         </Link>
-        <i className="fa-solid fa-flag"></i>
+
+        {movie?.vote_average}
+        <i className="fa-solid fa-star"></i>
+        {/* Finds whether the user has watched or not have liked a movie */}
+        <button>
+          {isWatched(parseInt(id!)) ? (
+            <i
+              className="fa-solid fa-trash-can"
+              onClick={() => {
+                removeWatched(parseInt(id!));
+                console.log("click");
+              }}
+            ></i>
+          ) : (
+            <i
+              className="fa-solid fa-clapperboard"
+              onClick={() => {
+                addWatched(movieToAdd!);
+                console.log("click");
+              }}
+            ></i>
+          )}
+        </button>
       </p>
       <img
         src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}

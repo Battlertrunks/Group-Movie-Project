@@ -1,9 +1,9 @@
-import MovieCard from "./MovieCard";
-
+// Goes inside array to attain the genre names.
 interface Name {
   name: string[];
 }
 
+// Must include these variables and array
 export default interface MovieDetails {
   release_date: string;
   genres: Name[];

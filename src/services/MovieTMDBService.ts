@@ -3,12 +3,13 @@ import Params from "../models/Params";
 import GenreResponse from "../models/GenreResponse";
 import MovieCardResponse from "../models/MovieCardResponse";
 import MovieDetailsResponse from "../models/MovieDetailsResponse";
-import SingleMovie from "../models/SingleMovie";
 
+// Gets the key from a .env.local file to prevent theft of api key.
 const key: string = process.env.REACT_APP_MDB_KEY || "";
 
 // newParams.api
 
+// Runs promise to bring back data of the filtered movies list from the API
 export const getFilteredMovies = (
   newParams: Params
 ): Promise<MovieCardResponse> => {
@@ -22,6 +23,7 @@ export const getFilteredMovies = (
     });
 };
 
+// Runs promise to bring back data about the specific movie from the API
 export const getMovieById = (id: string): Promise<MovieDetailsResponse> => {
   return axios
     .get(`https://api.themoviedb.org/3/movie/${encodeURIComponent(id)}`, {
@@ -33,6 +35,7 @@ export const getMovieById = (id: string): Promise<MovieDetailsResponse> => {
     });
 };
 
+// Runs promise to bring back data of the search results from the API
 export const getMovieBySearch = (query: string): Promise<MovieCardResponse> => {
   // console.log(query);
   return axios
@@ -47,6 +50,7 @@ export const getMovieBySearch = (query: string): Promise<MovieCardResponse> => {
     });
 };
 
+// Runs promise to return the data of trending movies for the week from the API
 export const getTrendingMovies = (): Promise<MovieCardResponse> => {
   return axios
     .get("https://api.themoviedb.org/3/trending/movie/week", {
@@ -55,6 +59,7 @@ export const getTrendingMovies = (): Promise<MovieCardResponse> => {
     .then((response) => response.data);
 };
 
+// Runs promise to return the data of all of the genres with their IDs and names.
 export const getGenres = (): Promise<GenreResponse> => {
   return axios
     .get("https://api.themoviedb.org/3/genre/movie/list", {

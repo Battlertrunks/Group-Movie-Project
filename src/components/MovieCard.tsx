@@ -2,15 +2,17 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import MovieContext from "../context/MovieContext";
 import MovieCard from "../models/MovieCard";
-import "./Card.css";
+import "./MovieCard.css";
 
+// Gets the props in order to access the MovieCard values.
 interface Props {
   singleMovieCard: MovieCard;
 }
 
 const Card = ({ singleMovieCard }: Props) => {
-  const { watchedMovie, addWatched, removeWatched, isWatched } =
-    useContext(MovieContext);
+  // Destructuring the MovieContext functions to use in our code.
+  const { addWatched, removeWatched, isWatched } = useContext(MovieContext);
+
   return (
     <li className="Card">
       <Link to={`/movie/${encodeURIComponent(singleMovieCard.id?.toString())}`}>
@@ -23,7 +25,7 @@ const Card = ({ singleMovieCard }: Props) => {
         <p>
           {singleMovieCard?.vote_average}
           <i className="fa-solid fa-star"></i>
-
+          {/* Finds whether the user has watched or not have liked a movie */}
           {isWatched(singleMovieCard.id) ? (
             <i
               className="fa-solid fa-trash-can"
@@ -40,7 +42,7 @@ const Card = ({ singleMovieCard }: Props) => {
             ></i>
           )}
         </p>
-        <p>{singleMovieCard?.genre}</p>
+        {/* <p>{singleMovieCard?.genre}</p> */}
       </div>
       <h2>{singleMovieCard?.title}</h2>
       <button>Details</button>
