@@ -21,11 +21,21 @@
 
 .Card h2 {
   height: 75px;
-  font-size: 100%;
+  font-size: 125%;
   text-align: center;
   padding-top: 15px;
   font-family: "Sarala", sans-serif;
   font-weight: 400;
+}
+
+.Card .movie-card-title {
+  text-decoration: none;
+}
+
+.Card .movie-card-title:hover,
+.Card h2:hover {
+  transition: all 0.5s ease;
+  color: rgb(255, 34, 34);
 }
 
 .Card li {
@@ -47,14 +57,18 @@
 
 .Card .isNotFavorite {
   transition: all 0.4s ease;
-  color: #81bbc7;
+  color: #fff;
 }
 
 .Card .isFavorite {
   transition: all 0.4s ease;
-  color: #fff;
+  color: #81bbc7;
 }
 
 .Card .ratings i {
   color: yellow;
+}
+
+.Card .text-options {
+  font-size: 115%;
 }

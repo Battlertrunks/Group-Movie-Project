@@ -6,6 +6,10 @@
   background-color: #81bbc7;
   margin-top: 75px;
   border-radius: 15px 15px 0 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .Footer ul {
