@@ -10,8 +10,8 @@ const Header = () => {
       <div className="header-bg-color">
         <Link className="logo" to="/">
           <h1>
+            <span className="sawd">Sawd</span> <span className="dit">dit</span>
             <img src={handSaw} alt="handSaw" />
-            Sawddit
           </h1>
         </Link>
         <nav>
