@@ -1,3 +1,7 @@
+.MovieGallery {
+  margin-bottom: 50px;
+}
+
 .MovieGallery ul {
   display: grid;
   grid-template-columns: 1fr 1fr;

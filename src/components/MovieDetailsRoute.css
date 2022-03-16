@@ -27,6 +27,11 @@
 }
 
 .MovieDetailsRoute .back-btn i {
+  color: #fff;
+}
+
+.MovieDetailsRoute .back-btn i:hover {
+  transition: all 0.15s ease-in;
   color: rgb(168, 86, 86);
 }
 
@@ -37,12 +42,16 @@
 
 .MovieDetailsRoute .not-watched {
   color: #fff;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
+}
+
+.MovieDetailsRoute .not-watched:hover {
+  color: #81bbc7;
 }
 
 .MovieDetailsRoute .has-watched,
 .MovieDetailsRoute .has-watched i {
-  color: #81bbc7;
+  color: rgb(168, 86, 86);
   transition: color 0.3s ease;
 }
 
@@ -73,6 +82,7 @@
 
 .MovieDetailsRoute .title-rating .rating {
   width: 200px;
+  color: rgb(255, 255, 119);
 }
 
 .MovieDetailsRoute .title-rating p {

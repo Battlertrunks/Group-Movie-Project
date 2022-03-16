@@ -50,6 +50,12 @@ const MovieDetailsRoute = () => {
       });
   }, [id]);
 
+  const hours = Math.floor(movie?.runtime! / 60);
+  const minutes = movie?.runtime! % 60;
+  const time = `${hours ? hours + "h" : ""}${
+    minutes ? " " + minutes + "m" : ""
+  }`;
+
   // Displaying the movie's information to the screen
   return (
     <div className="MovieDetailsRoute">
@@ -124,7 +130,9 @@ const MovieDetailsRoute = () => {
                   {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
                   {movie?.release_date}
                 </p>
-                <p>Run Time: {movie?.runtime} minutes</p>
+                <p>
+                  Run Time: {movie?.runtime} minutes | ({time})
+                </p>
               </div>
               <div className="overview">
                 <h3>Overview</h3>
