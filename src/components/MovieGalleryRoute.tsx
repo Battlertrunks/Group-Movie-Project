@@ -7,10 +7,12 @@ import {
 } from "react-router-dom";
 import MovieContext from "../context/MovieContext";
 import MovieCardModel from "../models/MovieCard";
+import PagesResponse from "../models/PagesResponse";
 import {
   getFilteredMovies,
   getMovieBySearch,
   getTrendingMovies,
+  numberOfPagesAvail,
 } from "../services/MovieTMDBService";
 import MovieCard from "./MovieCard";
 import "./MovieGalleryRoute.css";
@@ -18,7 +20,7 @@ import "./MovieGalleryRoute.css";
 const MovieGallery = () => {
   // Setting up the movies that will be displayed using useState.
   const [movies, setMovies] = useState<MovieCardModel[]>([]);
-  // const [pageNumber, setPageNumber] = useState<number>(1);
+  const [numberOfPages, setNumberOfPages] = useState<PagesResponse>({});
 
   // Getting the params when the user is filtering and searching.
   const [searchParams] = useSearchParams();
@@ -47,11 +49,26 @@ const MovieGallery = () => {
     navigate(`/search/movies?${new URLSearchParams(params as any)}`);
   };
 
+  const prevPage = (): void => {
+    const params: Params = {
+      ...(genre ? { with_genres: genre! } : {}),
+      ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
+      ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
+      ...(searchTerm ? { query: searchTerm } : {}),
+      ...(sortTerm ? { sort_by: sortTerm! } : {}),
+      page: (parseInt(pageNumberTerm!) - 1).toString(),
+    };
+    navigate(`/search/movies?${new URLSearchParams(params as any)}`);
+  };
+
   useEffect(() => {
     if (searchTerm) {
       // If the user used the search bar:
       getMovieBySearch(searchTerm, pageNumberTerm!).then((response) => {
         setMovies(response.results);
+        numberOfPagesAvail(searchTerm, pageNumberTerm!).then((response) => {
+          setNumberOfPages(response);
+        });
       });
     } // If the user is using the filters bar:
     else if (sortTerm || voteAverageGTE || genre || voteAverageLTE) {
@@ -80,6 +97,7 @@ const MovieGallery = () => {
     watchedMovie,
   ]); // Runs useEffect when these dependencies change
   console.log(location);
+  console.log(numberOfPages);
   // console.log(movies[0].total_pages);
 
   // Displays the movie cards to the user:
@@ -91,15 +109,13 @@ const MovieGallery = () => {
         ))}
       </ul>
       <div>
-        {/* {pageNumber >= 2 ? (
-          <button onClick={() => setPageNumber((prev) => prev - 1)}>
-            Previous Page
-          </button>
+        {parseInt(pageNumberTerm!) >= 2 ? (
+          <button onClick={prevPage}>Previous Page</button>
         ) : (
           <button disabled>Previous Page</button>
         )}
-        <p>{pageNumber}</p> */}
-        {true ? (
+        <p>{pageNumberTerm}</p>
+        {parseInt(pageNumberTerm!) < numberOfPages.total_pages! ? (
           <button onClick={nextPage}>Next Page</button>
         ) : (
           <button disabled>Previous Page</button>
