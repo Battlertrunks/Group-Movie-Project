@@ -2,7 +2,7 @@
   margin: 10px 30px;
 }
 
-.MovieDetailsRoute img {
+.MovieDetailsRoute .poster-img {
   width: 100%;
   max-width: 500px;
   margin: 10px auto;
@@ -71,8 +71,12 @@
   font-family: "Saira Condensed", sans-serif;
 }
 
-.MovieDetailsRoute .movie-information .title-rating div {
-  width: 60px;
+.MovieDetailsRoute .title-rating div {
+  width: 80px;
+}
+
+.MovieDetailsRoute .title-rating p {
+  display: inline;
 }
 
 .MovieDetailsRoute .overview h3 {
@@ -82,4 +86,63 @@
 .MovieDetailsRoute .overview p {
   font-weight: 600;
   line-height: 32px;
+}
+
+.MovieDetailsRoute .backdrop-img {
+  display: none;
+}
+
+@media only screen and (min-width: 980px) {
+  .MovieDetailsRoute .poster-img {
+    width: 50%;
+    max-width: 400px;
+    margin: 10px;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.452);
+  }
+
+  .MovieDetailsRoute .backdrop-img {
+    display: block;
+    position: absolute;
+    top: 275px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    width: 125%;
+    max-height: 750px;
+    object-fit: cover;
+    filter: hue-rotate(15deg) brightness(33%) grayscale(30%) contrast(110%);
+  }
+
+  .MovieDetailsRoute .content-details {
+    display: flex;
+    margin-top: 100px;
+  }
+
+  .MovieDetailsRoute .movie-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .MovieDetailsRoute .movie-information h2 {
+    font-size: 48px;
+  }
+
+  .MovieDetailsRoute .movie-information span {
+    font-size: 24px;
+  }
+
+  .MovieDetailsRoute .title-rating div p {
+    font-size: 28px;
+  }
+
+  .MovieDetailsRoute .movie-information h3 {
+    font-size: 32px;
+  }
+
+  .MovieDetailsRoute .movie-information p {
+    font-size: 18px;
+  }
 }

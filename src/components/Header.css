@@ -38,3 +38,15 @@
   align-items: center;
   padding: 10px;
 }
+
+@media only screen and (min-width: 768px) {
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #81bbc7;
+  }
+
+  .Header .header-bg-color {
+    flex: 1;
+  }
+}

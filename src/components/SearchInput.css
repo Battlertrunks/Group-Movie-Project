@@ -20,5 +20,20 @@
   padding: 8px;
   width: 65%;
   max-width: 600px;
-  border: 3px solid #32334d;
+  border: 2px solid #32334d;
+}
+
+@media only screen and (min-width: 768px) {
+  .SearchInput {
+    margin: 0;
+    flex: 0.7;
+  }
+
+  .SearchInput button {
+    background-color: #fff;
+  }
+
+  .SearchInput button i {
+    color: #81bbc7;
+  }
 }

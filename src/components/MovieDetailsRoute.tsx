@@ -39,6 +39,11 @@ const MovieDetailsRoute = () => {
   // Displaying the movie's information to the screen
   return (
     <div className="MovieDetailsRoute">
+      <img
+        className="backdrop-img"
+        src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+        alt=""
+      />
       <div className="top-buttons">
         <Link to="/">
           <button className="back-btn">
@@ -69,38 +74,41 @@ const MovieDetailsRoute = () => {
           )}
         </button>
       </div>
-      <img
-        src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
-        alt={movie?.title}
-      />
-      <section className="movie-information">
-        <div className="genre-date-runtime">
-          <div className="title-rating">
-            <h2>
-              {/* just need year for the title release date */}
-              {movie?.title}{" "}
-              <span className="release-year">
-                - ({movie?.release_date.substring(0, 4)})
-              </span>{" "}
-            </h2>{" "}
-            <div>
-              {movie?.vote_average}
-              <i className="fa-solid fa-star"></i>
+      <div className="content-details">
+        <img
+          className="poster-img"
+          src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+          alt={movie?.title}
+        />
+        <section className="movie-information">
+          <div className="genre-date-runtime">
+            <div className="title-rating">
+              <h2>
+                {/* just need year for the title release date */}
+                {movie?.title}{" "}
+                <span className="release-year">
+                  - ({movie?.release_date.substring(0, 4)})
+                </span>{" "}
+              </h2>{" "}
+              <div>
+                <p>{movie?.vote_average}</p>
+                <i className="fa-solid fa-star"></i>
+              </div>
             </div>
-          </div>
-          {/* join method below show display all generes, check once functions finished */}
+            {/* join method below show display all generes, check once functions finished */}
 
-          <p>
-            {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
-            {movie?.release_date}
-          </p>
-          <p>Run Time: {movie?.runtime} minutes</p>
-        </div>
-        <div className="overview">
-          <h3>Overview</h3>
-          <p>{movie?.overview}</p>
-        </div>
-      </section>
+            <p>
+              {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
+              {movie?.release_date}
+            </p>
+            <p>Run Time: {movie?.runtime} minutes</p>
+          </div>
+          <div className="overview">
+            <h3>Overview</h3>
+            <p>{movie?.overview}</p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
