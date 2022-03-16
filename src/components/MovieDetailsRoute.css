@@ -1,3 +1,7 @@
+body {
+  background: linear-gradient(rgba(37, 41, 51, 1), rgb(28, 29, 49));
+}
+
 .MovieDetailsRoute {
   margin: 10px 30px;
 }
@@ -81,12 +85,15 @@
 }
 
 .MovieDetailsRoute .title-rating .rating {
-  width: 200px;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
   color: rgb(255, 255, 119);
 }
 
 .MovieDetailsRoute .title-rating p {
   display: inline;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .MovieDetailsRoute .overview h3 {
