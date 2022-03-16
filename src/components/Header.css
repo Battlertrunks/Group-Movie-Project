@@ -3,11 +3,29 @@
 } */
 
 .Header img {
-  height: 50px;
+  height: 30px;
+  position: absolute;
+  z-index: 1;
+  left: 47px;
+}
+
+.Header .sawd {
+  z-index: 2;
+  position: relative;
+}
+
+.Header .dit {
+  z-index: 0;
+  position: relative;
 }
 
 .Header .logo {
   text-decoration: none;
+  position: relative;
+}
+
+.Header .logo img {
+  animation: 1.5s floaty infinite;
 }
 
 .Header li {
@@ -15,11 +33,6 @@
   display: inline-block;
   padding: 0 10px;
   font-size: 18px;
-}
-
-.Header h1 {
-  display: flex;
-  align-items: center;
 }
 
 .Header button {
@@ -37,6 +50,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+
+@keyframes floaty {
+  0% {
+    transform: translate(-10px, 15px);
+  }
+  50% {
+    transform: translate(5px, -8px);
+  }
+  100% {
+    transform: translate(-10px, 15px);
+  }
 }
 
 @media only screen and (min-width: 768px) {

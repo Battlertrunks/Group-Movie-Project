@@ -21,6 +21,20 @@
   padding: 0 10px;
 }
 
+.Footer a {
+  text-decoration: none;
+  color: black;
+}
+
+.Footer a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+/* .Footer .icon-list i:hover {
+  color: white;
+} */
+
 @media only screen and (min-width: 786px) {
   .Footer ul {
     display: flex;

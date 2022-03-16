@@ -3,23 +3,30 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="Footer">
-      <p>Sawdit</p>
-      <ul>
+      <p>Sawddit</p>
+      <ul className="icon-list">
         <li>
-          <a href="#"></a>
-          <i className="fa-brands fa-twitter-square"></i>
+          <a href="#">
+            {" "}
+            <i className="fa-brands fa-twitter-square"></i>
+          </a>
         </li>
         <li>
-          <a href="#"></a>
-          <i className="fa-brands fa-facebook-square"></i>
+          <a href="#">
+            <i className="fa-brands fa-facebook-square"></i>
+          </a>
         </li>
         <li>
-          <a href="#"></a>
-          <i className="fa-brands fa-apple"></i>
+          <a href="#">
+            {" "}
+            <i className="fa-brands fa-apple"></i>
+          </a>
         </li>
         <li>
-          <a href="#"></a>
-          <i className="fa-brands fa-android"></i>
+          <a href="#">
+            {" "}
+            <i className="fa-brands fa-android"></i>
+          </a>
         </li>
       </ul>
       <p>
