@@ -44,7 +44,7 @@ const MovieGallery = () => {
     } // If the user is not using the search or filters, shows user trending movies:
     else if (location.pathname === "/movie/watched") {
       setMovies(watchedMovie);
-      console.log(movies);
+      console.log(location);
     } else {
       getTrendingMovies().then((response) => {
         setMovies(response.results);

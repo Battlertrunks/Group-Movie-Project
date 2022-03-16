@@ -9,7 +9,6 @@ import {
   Routes,
 } from "react-router-dom";
 import MovieDetailsRoute from "./components/MovieDetailsRoute";
-import WatchedMovieGallery from "./components/WatchedMovieGalleryRoute";
 import Footer from "./components/Footer";
 
 // Creating routes when the users go to specific elements.
