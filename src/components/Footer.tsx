@@ -11,10 +11,6 @@ const Footer = () => {
         </li>
         <li>
           <a href="#"></a>
-          <i className="fa-brands fa-twitter-square"></i>
-        </li>
-        <li>
-          <a href="#"></a>
           <i className="fa-brands fa-facebook-square"></i>
         </li>
         <li>

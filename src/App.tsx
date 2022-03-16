@@ -17,17 +17,23 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
-        <FilterBar />
-        <Routes>
-          <Route path="/" element={<MovieGalleryRoute />} />
-          <Route path="/discover/movie" element={<MovieGalleryRoute />} />
-          <Route path="/search/movies" element={<MovieGalleryRoute />} />
-          <Route path="/movie/:id" element={<MovieDetailsRoute />} />
-          <Route path="/movie/watched" element={<MovieGalleryRoute />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-        <Footer />
+        <header>
+          <Header />
+        </header>
+        <main>
+          <FilterBar />
+          <Routes>
+            <Route path="/" element={<MovieGalleryRoute />} />
+            <Route path="/discover/movie" element={<MovieGalleryRoute />} />
+            <Route path="/search/movies" element={<MovieGalleryRoute />} />
+            <Route path="/movie/:id" element={<MovieDetailsRoute />} />
+            <Route path="/movie/watched" element={<MovieGalleryRoute />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </Router>
     </div>
   );

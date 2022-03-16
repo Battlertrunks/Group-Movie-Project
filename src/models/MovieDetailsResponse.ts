@@ -13,6 +13,7 @@ export default interface MovieDetails {
   vote_average: number;
   poster_path: string;
   backdrop_path: string;
+  tagline: string;
   id: number;
 }
 

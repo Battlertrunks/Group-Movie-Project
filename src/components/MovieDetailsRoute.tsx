@@ -83,14 +83,17 @@ const MovieDetailsRoute = () => {
         <section className="movie-information">
           <div className="genre-date-runtime">
             <div className="title-rating">
-              <h2>
-                {/* just need year for the title release date */}
-                {movie?.title}{" "}
-                <span className="release-year">
-                  - ({movie?.release_date.substring(0, 4)})
-                </span>{" "}
-              </h2>{" "}
               <div>
+                <h2>
+                  {/* just need year for the title release date */}
+                  {movie?.title}{" "}
+                  <span className="release-year">
+                    - ({movie?.release_date.substring(0, 4)})
+                  </span>{" "}
+                </h2>{" "}
+                <p>{movie?.tagline}</p>
+              </div>
+              <div className="rating">
                 <p>{movie?.vote_average}</p>
                 <i className="fa-solid fa-star"></i>
               </div>

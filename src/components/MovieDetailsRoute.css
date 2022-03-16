@@ -71,8 +71,8 @@
   font-family: "Saira Condensed", sans-serif;
 }
 
-.MovieDetailsRoute .title-rating div {
-  width: 80px;
+.MovieDetailsRoute .title-rating .rating {
+  width: 200px;
 }
 
 .MovieDetailsRoute .title-rating p {
@@ -93,6 +93,10 @@
 }
 
 @media only screen and (min-width: 980px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .MovieDetailsRoute .poster-img {
     width: 50%;
     max-width: 400px;
@@ -110,7 +114,7 @@
     right: 0;
     z-index: -1;
     width: 125%;
-    max-height: 750px;
+    max-height: 775px;
     object-fit: cover;
     filter: hue-rotate(15deg) brightness(33%) grayscale(30%) contrast(110%);
   }
