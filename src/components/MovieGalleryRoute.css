@@ -9,6 +9,33 @@
   flex-wrap: wrap;
 }
 
+.MovieGallery .btn-next-prev {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.MovieGallery .btn-next-prev button {
+  width: 120px;
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #81bbc7;
+  border: none;
+  cursor: pointer;
+}
+
+.MovieGallery .btn-next-prev button:hover {
+  transition: background-color 0.2s ease;
+  background-color: #62b3c4;
+}
+
+.MovieGallery .btn-next-prev button:disabled {
+  background-color: #2c3241;
+  color: #5f5f5f;
+  cursor: default;
+}
+
 @media only screen and (min-width: 768px) {
   .MovieGallery ul {
     grid-template-columns: 1fr 1fr 1fr;

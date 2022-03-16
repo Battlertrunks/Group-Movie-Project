@@ -16,6 +16,7 @@ import {
 } from "../services/MovieTMDBService";
 import MovieCard from "./MovieCard";
 import "./MovieGalleryRoute.css";
+import PageButtons from "./PageButtons";
 
 const MovieGallery = () => {
   // Setting up the movies that will be displayed using useState.
@@ -103,24 +104,23 @@ const MovieGallery = () => {
   // Displays the movie cards to the user:
   return (
     <div className="MovieGallery">
+      <PageButtons
+        pageNumTerm={pageNumberTerm!}
+        prev={prevPage}
+        next={nextPage}
+        numPages={numberOfPages!}
+      />
       <ul>
         {movies.map((movie) => (
           <MovieCard key={movie.id} singleMovieCard={movie} />
         ))}
       </ul>
-      <div>
-        {parseInt(pageNumberTerm!) >= 2 ? (
-          <button onClick={prevPage}>Previous Page</button>
-        ) : (
-          <button disabled>Previous Page</button>
-        )}
-        <p>{pageNumberTerm}</p>
-        {parseInt(pageNumberTerm!) < numberOfPages.total_pages! ? (
-          <button onClick={nextPage}>Next Page</button>
-        ) : (
-          <button disabled>Previous Page</button>
-        )}
-      </div>
+      <PageButtons
+        pageNumTerm={pageNumberTerm!}
+        prev={prevPage}
+        next={nextPage}
+        numPages={numberOfPages!}
+      />
     </div>
   );
 };
