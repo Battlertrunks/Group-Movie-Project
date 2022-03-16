@@ -1,7 +1,18 @@
+.MovieDetailsRoute {
+  margin: 10px 30px;
+}
+
 .MovieDetailsRoute img {
-  height: 250px;
+  width: 100%;
+  margin: 10px auto;
+  display: block;
 }
 
 .MovieDetailsRoute i {
-  font-size: 40px;
+  font-size: 20px;
+}
+
+.MovieDetailsRoute .top-buttons {
+  display: flex;
+  justify-content: space-between;
 }

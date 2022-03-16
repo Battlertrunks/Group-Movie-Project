@@ -37,60 +37,75 @@ const FilterBar = () => {
 
   return (
     <form className="FilterBar" onSubmit={(e) => submitHandler(e)}>
-      <label htmlFor="sort-by">Sort by:</label>
-      <select
-        name="sort-by"
-        id="sort-by"
-        onChange={(e) => setSortBy(e.target.value)}
-      >
-        <option value="popularity.desc">Popular descending</option>
-        <option value="popularity.asc">Popular ascending</option>
-      </select>
-      <label htmlFor="genres">Genres:</label>
-      <select
-        name="genres"
-        id="genres"
-        onChange={(e) => setGenre(e.target.value)}
-      >
-        {genres.map((genre) => (
-          <option value={genre.id} key={genre.id}>
-            {genre.name}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="rating">Rating:</label>
-      <select
-        name="greaterRating"
-        id="greaterRating"
-        onChange={(e) => setVoteAverageGTE(e.target.value)}
-      >
-        <option value="10">10</option>
-        <option value="9">Greater than 9</option>
-        <option value="8">Greater than 8</option>
-        <option value="7">Greater than 7</option>
-        <option value="6">Greater than 6</option>
-        <option value="5">Greater than 5</option>
-        <option value="4">Greater than 4</option>
-        <option value="3">Greater than 3</option>
-        <option value="2">Greater than 2</option>
-        <option value="1">Greater than 1</option>
-      </select>
-      <select
-        name="lowerRating"
-        id="lowerRating"
-        onChange={(e) => setVoteAverageLTE(e.target.value)}
-      >
-        <option value="10">10</option>
-        <option value="9">Less than 9</option>
-        <option value="8">Less than 8</option>
-        <option value="7">Less than 7</option>
-        <option value="6">Less than 6</option>
-        <option value="5">Less than 5</option>
-        <option value="4">Less than 4</option>
-        <option value="3">Less than 3</option>
-        <option value="2">Less than 2</option>
-        <option value="1">Less than 1</option>
-      </select>
+      <div className="input-container">
+        <div>
+          <label htmlFor="sort-by">Sort by:</label>
+          <select
+            name="sort-by"
+            id="sort-by"
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="popularity.desc">Popular descending</option>
+            <option value="popularity.asc">Popular ascending</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="genres">Genres:</label>
+          <select
+            name="genres"
+            id="genres"
+            onChange={(e) => setGenre(e.target.value)}
+          >
+            {genres.map((genre) => (
+              <option value={genre.id} key={genre.id}>
+                {genre.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="greaterRating">Rating Less than:</label>
+          <select
+            name="greaterRating"
+            id="greaterRating"
+            className="number-rating"
+            onChange={(e) => setVoteAverageGTE(e.target.value)}
+          >
+            <option value=""></option>
+            <option value="10">10</option>
+            <option value="9"> &#62; 9</option>
+            <option value="8"> &#62; 8</option>
+            <option value="7"> &#62; 7</option>
+            <option value="6"> &#62; 6</option>
+            <option value="5"> &#62; 5</option>
+            <option value="4"> &#62; 4</option>
+            <option value="3"> &#62; 3</option>
+            <option value="2"> &#62; 2</option>
+            <option value="1"> &#62; 1</option>
+          </select>
+        </div>
+        {/* <div>
+          <label htmlFor="lowerRating">Rating greater than:</label>
+          <select
+            name="lowerRating"
+            id="lowerRating"
+            className="number-rating"
+            onChange={(e) => setVoteAverageLTE(e.target.value)}
+          >
+            <option value=""></option>
+            <option value="10">10</option>
+            <option value="9">Less than 9</option>
+            <option value="8">Less than 8</option>
+            <option value="7">Less than 7</option>
+            <option value="6">Less than 6</option>
+            <option value="5">Less than 5</option>
+            <option value="4">Less than 4</option>
+            <option value="3">Less than 3</option>
+            <option value="2">Less than 2</option>
+            <option value="1">Less than 1</option>
+          </select>
+        </div> */}
+      </div>
       <button>Submit</button>
     </form>
   );

@@ -39,13 +39,10 @@ const MovieDetailsRoute = () => {
   // Displaying the movie's information to the screen
   return (
     <div className="MovieDetailsRoute">
-      <p>
+      <div className="top-buttons">
         <Link to="/">
           <i className="fa-solid fa-backward-fast"></i>
         </Link>
-
-        {movie?.vote_average}
-        <i className="fa-solid fa-star"></i>
         {/* Finds whether the user has watched or not have liked a movie */}
         <button>
           {isWatched(parseInt(id!)) ? (
@@ -53,7 +50,6 @@ const MovieDetailsRoute = () => {
               className="fa-solid fa-trash-can"
               onClick={() => {
                 removeWatched(parseInt(id!));
-                console.log("click");
               }}
             ></i>
           ) : (
@@ -61,12 +57,11 @@ const MovieDetailsRoute = () => {
               className="fa-solid fa-clapperboard"
               onClick={() => {
                 addWatched(movieToAdd!);
-                console.log("click");
               }}
             ></i>
           )}
         </button>
-      </p>
+      </div>
       <img
         src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
         alt={movie?.title}

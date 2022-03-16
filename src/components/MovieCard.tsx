@@ -27,25 +27,29 @@ const Card = ({ singleMovieCard }: Props) => {
           <i className="fa-solid fa-star"></i>
         </div>
         {/* Finds whether the user has watched or not have liked a movie */}
-        {isWatched(singleMovieCard.id) ? (
-          <i
-            className="fa-solid fa-trash-can"
-            onClick={() => {
-              removeWatched(singleMovieCard.id);
-            }}
-          ></i>
-        ) : (
-          <i
-            className="fa-solid fa-clapperboard"
-            onClick={() => {
-              addWatched(singleMovieCard);
-            }}
-          ></i>
-        )}
+        <div>
+          {isWatched(singleMovieCard.id) ? (
+            <i
+              className="fa-solid fa-clapperboard isFavorite"
+              onClick={() => {
+                removeWatched(singleMovieCard.id);
+              }}
+            ></i>
+          ) : (
+            <i
+              className="fa-solid fa-clapperboard isNotFavorite"
+              onClick={() => {
+                addWatched(singleMovieCard);
+              }}
+            ></i>
+          )}
+        </div>
 
         {/* <p>{singleMovieCard?.genre}</p> */}
       </div>
-      <h2>{singleMovieCard?.title}</h2>
+      <Link to={`/movie/${encodeURIComponent(singleMovieCard.id?.toString())}`}>
+        <h2>{singleMovieCard?.title}</h2>
+      </Link>
     </li>
   );
 };
