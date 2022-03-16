@@ -8,6 +8,7 @@
 
 .Header .logo {
   text-decoration: none;
+  animation: 1.5s floaty infinite;
 }
 
 .Header li {
@@ -37,6 +38,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
 }
 
 @media only screen and (min-width: 768px) {

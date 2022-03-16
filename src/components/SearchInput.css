@@ -17,6 +17,15 @@
 
 .SearchInput input {
   border-radius: 25px;
+  padding: 4px 8px;
+  width: 65%;
+  max-width: 600px;
+  border: 2px solid #fff;
+  font-family: "Saira Condensed", sans-serif;
+}
+
+.SearchInput input:hover {
+  border-radius: 25px;
   padding: 8px;
   width: 65%;
   max-width: 600px;
@@ -31,9 +40,19 @@
 
   .SearchInput button {
     background-color: #fff;
+    color: #81bbc7;
+  }
+
+  .SearchInput button:hover {
+    background-color: #eee;
+  }
+  /* 
+  .SearchInput button i:hover {
+    color: white;
   }
 
   .SearchInput button i {
     color: #81bbc7;
   }
+*/
 }
