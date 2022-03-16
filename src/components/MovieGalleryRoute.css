@@ -4,3 +4,21 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
+@media only screen and (min-width: 768px) {
+  .MovieGallery ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1150px) {
+  .MovieGallery ul {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .MovieGallery ul {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}

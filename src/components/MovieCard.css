@@ -1,7 +1,7 @@
 .Card img {
   width: 100%;
   max-width: 500px;
-  min-width: 200px;
+  min-width: 120px;
 }
 
 .Card i {
@@ -12,15 +12,20 @@
   background-color: #2e3d47;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 30px;
+  margin: 15px 10px;
   border-radius: 5px;
+  height: 95%;
 }
 
 .Card h2 {
-  height: 60px;
-  font-size: 1.25rem;
+  height: 75px;
+  font-size: 100%;
+  text-align: center;
+  padding-top: 15px;
+  font-family: "Sarala", sans-serif;
+  font-weight: 400;
 }
 
 .Card li {
@@ -31,8 +36,23 @@
 
 .Card .card-text-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
+  font-size: 19px;
+}
+
+.Card .card-text-content div {
+  margin: 0 10px;
+}
+
+.Card .isNotFavorite {
+  transition: all 0.4s ease;
+  color: #81bbc7;
+}
+
+.Card .isFavorite {
+  transition: all 0.4s ease;
+  color: #fff;
 }
 
 .Card .ratings i {

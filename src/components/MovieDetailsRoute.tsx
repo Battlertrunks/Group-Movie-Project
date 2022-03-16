@@ -39,54 +39,79 @@ const MovieDetailsRoute = () => {
   // Displaying the movie's information to the screen
   return (
     <div className="MovieDetailsRoute">
-      <p>
+      <img
+        className="backdrop-img"
+        src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+        alt=""
+      />
+      <div className="top-buttons">
         <Link to="/">
-          <i className="fa-solid fa-backward-fast"></i>
+          <button className="back-btn">
+            <i className="fa-solid fa-backward-fast"></i>
+          </button>
         </Link>
-
-        {movie?.vote_average}
-        <i className="fa-solid fa-star"></i>
         {/* Finds whether the user has watched or not have liked a movie */}
         <button>
           {isWatched(parseInt(id!)) ? (
-            <i
-              className="fa-solid fa-trash-can"
-              onClick={() => {
-                removeWatched(parseInt(id!));
-                console.log("click");
-              }}
-            ></i>
+            <p className="has-watched">
+              Watched{" "}
+              <i
+                className="fa-solid fa-clapperboard isFavorite"
+                onClick={() => {
+                  removeWatched(parseInt(id!));
+                }}
+              ></i>
+            </p>
           ) : (
-            <i
-              className="fa-solid fa-clapperboard"
-              onClick={() => {
-                addWatched(movieToAdd!);
-                console.log("click");
-              }}
-            ></i>
+            <p className="not-watched">
+              <i
+                className="fa-solid fa-clapperboard"
+                onClick={() => {
+                  addWatched(movieToAdd!);
+                }}
+              ></i>
+            </p>
           )}
         </button>
-      </p>
-      <img
-        src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
-        alt={movie?.title}
-      />
-      <div>
-        <p>
-          {/* just need year for the title release date */}
-          {movie?.title} - ({movie?.release_date.substring(0, 4)}){" "}
-        </p>{" "}
-        {movie?.vote_average}
-        <i className="fa-solid fa-star"></i>
       </div>
-      {/* join method below show display all generes, check once functions finished */}
-      <p>
-        {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
-        {movie?.release_date}
-      </p>
-      <p>Run Time: {movie?.runtime}M</p>
-      <h3>Overview</h3>
-      <p>{movie?.overview}</p>
+      <div className="content-details">
+        <img
+          className="poster-img"
+          src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+          alt={movie?.title}
+        />
+        <section className="movie-information">
+          <div className="genre-date-runtime">
+            <div className="title-rating">
+              <div>
+                <h2>
+                  {/* just need year for the title release date */}
+                  {movie?.title}{" "}
+                  <span className="release-year">
+                    - ({movie?.release_date.substring(0, 4)})
+                  </span>{" "}
+                </h2>{" "}
+                <p>{movie?.tagline}</p>
+              </div>
+              <div className="rating">
+                <p>{movie?.vote_average}</p>
+                <i className="fa-solid fa-star"></i>
+              </div>
+            </div>
+            {/* join method below show display all generes, check once functions finished */}
+
+            <p>
+              {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
+              {movie?.release_date}
+            </p>
+            <p>Run Time: {movie?.runtime} minutes</p>
+          </div>
+          <div className="overview">
+            <h3>Overview</h3>
+            <p>{movie?.overview}</p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

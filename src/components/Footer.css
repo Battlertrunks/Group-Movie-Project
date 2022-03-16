@@ -1,0 +1,24 @@
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  font-size: 18px;
+  background-color: #81bbc7;
+  margin-top: 75px;
+  border-radius: 15px 15px 0 0;
+}
+
+.Footer ul {
+  list-style: none;
+  display: none;
+}
+
+.Footer li {
+  padding: 0 10px;
+}
+
+@media only screen and (min-width: 786px) {
+  .Footer ul {
+    display: flex;
+  }
+}

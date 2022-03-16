@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { Params, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Params, useLocation, useSearchParams } from "react-router-dom";
+import MovieContext from "../context/MovieContext";
 import MovieCardModel from "../models/MovieCard";
 import {
   getFilteredMovies,
@@ -20,6 +21,11 @@ const MovieGallery = () => {
   const voteAverageGTE: string | null = searchParams.get("vote_average.gte");
   const voteAverageLTE: string | null = searchParams.get("vote_average.lte");
   const genre: string | null = searchParams.get("with_genres");
+
+  const location = useLocation();
+
+  const { watchedMovie } = useContext(MovieContext);
+
   useEffect(() => {
     // If the user used the search bar:
     if (searchTerm) {
@@ -36,12 +42,24 @@ const MovieGallery = () => {
       };
       getFilteredMovies(params).then((response) => setMovies(response.results));
     } // If the user is not using the search or filters, shows user trending movies:
-    else {
+    else if (location.pathname === "/movie/watched") {
+      setMovies(watchedMovie);
+      console.log(location);
+    } else {
       getTrendingMovies().then((response) => {
         setMovies(response.results);
       });
+      console.log(movies);
     }
-  }, [searchTerm, sortTerm, voteAverageLTE, voteAverageGTE, genre]); // Runs useEffect when these dependencies change
+  }, [
+    searchTerm,
+    sortTerm,
+    voteAverageLTE,
+    voteAverageGTE,
+    genre,
+    location,
+    watchedMovie,
+  ]); // Runs useEffect when these dependencies change
 
   // Displays the movie cards to the user:
   return (

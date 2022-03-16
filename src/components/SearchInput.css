@@ -1,17 +1,39 @@
 .SearchInput {
   margin: 25px 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .SearchInput button {
   margin: 0 15px;
   padding: 5px;
+  width: 45px;
+  height: 45px;
   background-color: #81bbc7;
   border-radius: 5px;
+  font-size: 24px;
 }
 
 .SearchInput input {
   border-radius: 25px;
-  padding: 5px;
-  width: 50%;
+  padding: 8px;
+  width: 65%;
+  max-width: 600px;
+  border: 2px solid #32334d;
+}
+
+@media only screen and (min-width: 768px) {
+  .SearchInput {
+    margin: 0;
+    flex: 0.7;
+  }
+
+  .SearchInput button {
+    background-color: #fff;
+  }
+
+  .SearchInput button i {
+    color: #81bbc7;
+  }
 }

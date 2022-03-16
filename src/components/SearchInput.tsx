@@ -23,7 +23,9 @@ const SearchInput = () => {
         placeholder="Search"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button>Search Icon</button>
+      <button>
+        <i className="fa-solid fa-magnifying-glass"></i>
+      </button>
     </form>
   );
 };

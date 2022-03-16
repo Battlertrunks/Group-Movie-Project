@@ -1,13 +1,38 @@
 .FilterBar {
-  background-color: #81bbc7;
-  margin: 15px;
+  background-color: #2e3d47;
+  margin: 15px auto;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
+  width: 90%;
+  max-width: 700px;
+}
+
+.FilterBar .input-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 .FilterBar select {
   margin: 3px;
   padding: 2px;
   border-radius: 5px;
+  width: 100px;
+}
+
+.FilterBar label {
+  padding: 0 5px;
+}
+
+.FilterBar button {
+  width: 150px;
+  display: block;
+  margin: 8px auto;
+  padding: 2px;
+  color: #fff;
+  font-size: 18px;
+  background-color: #81bbc7;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
 }
