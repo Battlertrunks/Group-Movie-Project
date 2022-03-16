@@ -5,4 +5,5 @@ export default interface Params {
   "vote_average.lte"?: string;
   with_genres?: string;
   sort_by?: string;
+  page?: string;
 }

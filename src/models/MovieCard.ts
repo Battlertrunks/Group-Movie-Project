@@ -5,4 +5,5 @@ export default interface MovieCard {
   vote_average: number;
   poster_path: string;
   id: number;
+  total_pages?: number;
 }

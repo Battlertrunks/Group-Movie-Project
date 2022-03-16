@@ -10,7 +10,7 @@ const SearchInput = () => {
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault(); // Stops reload
     // Navigates to this path with the search query value
-    navigate(`/search/movies?${new URLSearchParams({ query })}`);
+    navigate(`/search/movies?${new URLSearchParams({ query, page: "1" })}`);
   };
 
   // Displays the search bar to the user:

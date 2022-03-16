@@ -36,11 +36,14 @@ export const getMovieById = (id: string): Promise<MovieDetailsResponse> => {
 };
 
 // Runs promise to bring back data of the search results from the API
-export const getMovieBySearch = (query: string): Promise<MovieCardResponse> => {
+export const getMovieBySearch = (
+  query: string,
+  page: string = "1"
+): Promise<MovieCardResponse> => {
   // console.log(query);
   return axios
     .get(`https://api.themoviedb.org/3/search/movie`, {
-      params: { api_key: key, query },
+      params: { api_key: key, query, page: page },
     })
     .then((response) => {
       return response.data;

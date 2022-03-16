@@ -1,5 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { Params, useLocation, useSearchParams } from "react-router-dom";
+import {
+  Params,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import MovieContext from "../context/MovieContext";
 import MovieCardModel from "../models/MovieCard";
 import {
@@ -13,23 +18,39 @@ import "./MovieGalleryRoute.css";
 const MovieGallery = () => {
   // Setting up the movies that will be displayed using useState.
   const [movies, setMovies] = useState<MovieCardModel[]>([]);
+  // const [pageNumber, setPageNumber] = useState<number>(1);
 
   // Getting the params when the user is filtering and searching.
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("query");
+  const pageNumberTerm: string | null = searchParams.get("page");
   const sortTerm: string | null = searchParams.get("sort_by");
   const voteAverageGTE: string | null = searchParams.get("vote_average.gte");
   const voteAverageLTE: string | null = searchParams.get("vote_average.lte");
   const genre: string | null = searchParams.get("with_genres");
 
+  const navigate = useNavigate();
+
   const location = useLocation();
 
   const { watchedMovie } = useContext(MovieContext);
 
+  const nextPage = (): void => {
+    const params: Params = {
+      ...(genre ? { with_genres: genre! } : {}),
+      ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
+      ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
+      ...(searchTerm ? { query: searchTerm } : {}),
+      ...(sortTerm ? { sort_by: sortTerm! } : {}),
+      page: (parseInt(pageNumberTerm!) + 1).toString(),
+    };
+    navigate(`/search/movies?${new URLSearchParams(params as any)}`);
+  };
+
   useEffect(() => {
-    // If the user used the search bar:
     if (searchTerm) {
-      getMovieBySearch(searchTerm).then((response) => {
+      // If the user used the search bar:
+      getMovieBySearch(searchTerm, pageNumberTerm!).then((response) => {
         setMovies(response.results);
       });
     } // If the user is using the filters bar:
@@ -44,12 +65,10 @@ const MovieGallery = () => {
     } // If the user is not using the search or filters, shows user trending movies:
     else if (location.pathname === "/movie/watched") {
       setMovies(watchedMovie);
-      console.log(location);
     } else {
       getTrendingMovies().then((response) => {
         setMovies(response.results);
       });
-      console.log(movies);
     }
   }, [
     searchTerm,
@@ -60,6 +79,8 @@ const MovieGallery = () => {
     location,
     watchedMovie,
   ]); // Runs useEffect when these dependencies change
+  console.log(location);
+  // console.log(movies[0].total_pages);
 
   // Displays the movie cards to the user:
   return (
@@ -69,6 +90,21 @@ const MovieGallery = () => {
           <MovieCard key={movie.id} singleMovieCard={movie} />
         ))}
       </ul>
+      <div>
+        {/* {pageNumber >= 2 ? (
+          <button onClick={() => setPageNumber((prev) => prev - 1)}>
+            Previous Page
+          </button>
+        ) : (
+          <button disabled>Previous Page</button>
+        )}
+        <p>{pageNumber}</p> */}
+        {true ? (
+          <button onClick={nextPage}>Next Page</button>
+        ) : (
+          <button disabled>Previous Page</button>
+        )}
+      </div>
     </div>
   );
 };
