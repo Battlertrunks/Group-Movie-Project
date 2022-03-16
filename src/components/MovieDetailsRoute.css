@@ -4,15 +4,82 @@
 
 .MovieDetailsRoute img {
   width: 100%;
+  max-width: 500px;
   margin: 10px auto;
   display: block;
-}
-
-.MovieDetailsRoute i {
-  font-size: 20px;
+  border-radius: 5px;
 }
 
 .MovieDetailsRoute .top-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.MovieDetailsRoute i {
+  font-size: 38px;
+}
+
+.MovieDetailsRoute button {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.MovieDetailsRoute .back-btn i {
+  color: rgb(168, 86, 86);
+}
+
+.MovieDetailsRoute .not-watched,
+.MovieDetailsRoute .has-watched {
+  font-size: 24px;
+}
+
+.MovieDetailsRoute .not-watched {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.MovieDetailsRoute .has-watched,
+.MovieDetailsRoute .has-watched i {
+  color: #81bbc7;
+  transition: color 0.3s ease;
+}
+
+.MovieDetailsRoute .title-rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.MovieDetailsRoute .movie-information {
+  margin: 10px 5px;
+}
+
+.MovieDetailsRoute .movie-information .genre-date-runtime,
+.MovieDetailsRoute .movie-information .overview {
+  margin-bottom: 50px;
+}
+
+.MovieDetailsRoute .movie-information h2 {
+  font-size: 24px;
+  margin-right: 20px;
+  font-family: "Sarala", sans-serif;
+}
+
+.MovieDetailsRoute .movie-information span {
+  font-size: 18px;
+  font-family: "Saira Condensed", sans-serif;
+}
+
+.MovieDetailsRoute .movie-information .title-rating div {
+  width: 60px;
+}
+
+.MovieDetailsRoute .overview h3 {
+  font-family: "Sarala", sans-serif;
+}
+
+.MovieDetailsRoute .overview p {
+  font-weight: 600;
+  line-height: 32px;
 }

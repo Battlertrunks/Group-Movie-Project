@@ -41,24 +41,31 @@ const MovieDetailsRoute = () => {
     <div className="MovieDetailsRoute">
       <div className="top-buttons">
         <Link to="/">
-          <i className="fa-solid fa-backward-fast"></i>
+          <button className="back-btn">
+            <i className="fa-solid fa-backward-fast"></i>
+          </button>
         </Link>
         {/* Finds whether the user has watched or not have liked a movie */}
         <button>
           {isWatched(parseInt(id!)) ? (
-            <i
-              className="fa-solid fa-trash-can"
-              onClick={() => {
-                removeWatched(parseInt(id!));
-              }}
-            ></i>
+            <p className="has-watched">
+              Watched{" "}
+              <i
+                className="fa-solid fa-clapperboard isFavorite"
+                onClick={() => {
+                  removeWatched(parseInt(id!));
+                }}
+              ></i>
+            </p>
           ) : (
-            <i
-              className="fa-solid fa-clapperboard"
-              onClick={() => {
-                addWatched(movieToAdd!);
-              }}
-            ></i>
+            <p className="not-watched">
+              <i
+                className="fa-solid fa-clapperboard"
+                onClick={() => {
+                  addWatched(movieToAdd!);
+                }}
+              ></i>
+            </p>
           )}
         </button>
       </div>
@@ -66,22 +73,34 @@ const MovieDetailsRoute = () => {
         src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
         alt={movie?.title}
       />
-      <div>
-        <p>
-          {/* just need year for the title release date */}
-          {movie?.title} - ({movie?.release_date.substring(0, 4)}){" "}
-        </p>{" "}
-        {movie?.vote_average}
-        <i className="fa-solid fa-star"></i>
-      </div>
-      {/* join method below show display all generes, check once functions finished */}
-      <p>
-        {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
-        {movie?.release_date}
-      </p>
-      <p>Run Time: {movie?.runtime}M</p>
-      <h3>Overview</h3>
-      <p>{movie?.overview}</p>
+      <section className="movie-information">
+        <div className="genre-date-runtime">
+          <div className="title-rating">
+            <h2>
+              {/* just need year for the title release date */}
+              {movie?.title}{" "}
+              <span className="release-year">
+                - ({movie?.release_date.substring(0, 4)})
+              </span>{" "}
+            </h2>{" "}
+            <div>
+              {movie?.vote_average}
+              <i className="fa-solid fa-star"></i>
+            </div>
+          </div>
+          {/* join method below show display all generes, check once functions finished */}
+
+          <p>
+            {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
+            {movie?.release_date}
+          </p>
+          <p>Run Time: {movie?.runtime} minutes</p>
+        </div>
+        <div className="overview">
+          <h3>Overview</h3>
+          <p>{movie?.overview}</p>
+        </div>
+      </section>
     </div>
   );
 };

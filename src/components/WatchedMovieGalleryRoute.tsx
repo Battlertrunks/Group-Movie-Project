@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import MovieContext from "../context/MovieContext";
 import Card from "./MovieCard";
 import "./WatchedMovieGalleryRoute.css";
