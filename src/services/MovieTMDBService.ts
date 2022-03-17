@@ -88,3 +88,20 @@ export const numberOfPagesAvail = (
       console.log(error.response);
     });
 };
+
+export const numberOfPagesAvailFilter = (
+  page: string
+): Promise<PagesResponse> => {
+  // console.log(query);
+
+  return axios
+    .get(`https://api.themoviedb.org/3/discover/movie`, {
+      params: { api_key: key, page: page },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};

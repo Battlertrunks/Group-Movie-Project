@@ -13,6 +13,7 @@ import {
   getMovieBySearch,
   getTrendingMovies,
   numberOfPagesAvail,
+  numberOfPagesAvailFilter,
 } from "../services/MovieTMDBService";
 import MovieCard from "./MovieCard";
 import "./MovieGalleryRoute.css";
@@ -35,6 +36,7 @@ const MovieGallery = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
+  console.log(location);
 
   const { watchedMovie } = useContext(MovieContext);
 
@@ -47,7 +49,7 @@ const MovieGallery = () => {
       ...(sortTerm ? { sort_by: sortTerm! } : {}),
       page: (parseInt(pageNumberTerm!) + 1).toString(),
     };
-    navigate(`/search/movies?${new URLSearchParams(params as any)}`);
+    navigate(`${location.pathname}?${new URLSearchParams(params as any)}`);
   };
 
   const prevPage = (): void => {
@@ -59,7 +61,7 @@ const MovieGallery = () => {
       ...(sortTerm ? { sort_by: sortTerm! } : {}),
       page: (parseInt(pageNumberTerm!) - 1).toString(),
     };
-    navigate(`/search/movies?${new URLSearchParams(params as any)}`);
+    navigate(`${location.pathname}?${new URLSearchParams(params as any)}`);
   };
 
   useEffect(() => {
@@ -69,17 +71,30 @@ const MovieGallery = () => {
         setMovies(response.results);
         numberOfPagesAvail(searchTerm, pageNumberTerm!).then((response) => {
           setNumberOfPages(response);
+          console.log(response);
         });
       });
     } // If the user is using the filters bar:
-    else if (sortTerm || voteAverageGTE || genre || voteAverageLTE) {
+    else if (
+      sortTerm ||
+      voteAverageGTE ||
+      genre ||
+      voteAverageLTE ||
+      pageNumberTerm
+    ) {
       const params: Params = {
         ...(genre ? { with_genres: genre! } : {}),
         ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
         ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
         ...(sortTerm ? { sort_by: sortTerm! } : {}),
       };
-      getFilteredMovies(params).then((response) => setMovies(response.results));
+      getFilteredMovies(params).then((response) => {
+        setMovies(response.results);
+        numberOfPagesAvailFilter(pageNumberTerm!).then((response) => {
+          setNumberOfPages(response);
+          console.log(response);
+        });
+      });
     } // If the user is not using the search or filters, shows user trending movies:
     else if (location.pathname === "/movie/watched") {
       setMovies(watchedMovie);
@@ -96,10 +111,8 @@ const MovieGallery = () => {
     genre,
     location,
     watchedMovie,
+    pageNumberTerm,
   ]); // Runs useEffect when these dependencies change
-  console.log(location);
-  console.log(numberOfPages);
-  // console.log(movies[0].total_pages);
 
   // Displays the movie cards to the user:
   return (

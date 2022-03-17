@@ -23,11 +23,15 @@ const FilterBar = () => {
       ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
       ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
       ...(sortBy ? { sort_by: sortBy! } : {}),
-      page: "1",
     };
 
     // Navigates to the URL path and inserts the params using the spread.
-    navigate(`/search/movies?${new URLSearchParams({ ...queryStringParams })}`);
+    navigate(
+      `/discover/movie?${new URLSearchParams({
+        ...queryStringParams,
+        page: "1",
+      })}`
+    );
   };
 
   // Runs once on every load.
