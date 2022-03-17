@@ -71,7 +71,7 @@ const FilterBar = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="greaterRating">Rating Less than:</label>
+          <label htmlFor="greaterRating">Rating Greater Than:</label>
           <select
             name="greaterRating"
             id="greaterRating"

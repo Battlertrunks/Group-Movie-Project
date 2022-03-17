@@ -34,12 +34,15 @@ const Card = ({ singleMovieCard }: Props) => {
         {/* Finds whether the user has watched or not have liked a movie */}
         <div className="vote-average text-options">
           {isWatched(singleMovieCard.id) ? (
-            <i
-              className="fa-solid fa-clapperboard isFavorite"
-              onClick={() => {
-                removeWatched(singleMovieCard.id);
-              }}
-            ></i>
+            <p>
+              Watched{" "}
+              <i
+                className="fa-solid fa-clapperboard isFavorite"
+                onClick={() => {
+                  removeWatched(singleMovieCard.id);
+                }}
+              ></i>
+            </p>
           ) : (
             <i
               className="fa-solid fa-clapperboard isNotFavorite"

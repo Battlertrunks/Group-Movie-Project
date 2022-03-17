@@ -39,7 +39,7 @@
 .Card .movie-card-title:hover,
 .Card h2:hover {
   transition: all 0.2s ease;
-  color: rgb(255, 34, 34);
+  color: rgb(168, 86, 86);
 }
 
 .Card li {
@@ -64,6 +64,10 @@
   color: #fff;
 }
 
+.Card .text-options p {
+  color: rgb(168, 86, 86);
+}
+
 .Card .isNotFavorite:hover {
   transition: all 0.4s ease;
   color: #81bbc7;
@@ -72,7 +76,7 @@
 
 .Card .isFavorite {
   transition: all 0.4s ease;
-  color: rgb(255, 34, 34);
+  color: rgb(168, 86, 86);
 }
 
 .Card .ratings i {
