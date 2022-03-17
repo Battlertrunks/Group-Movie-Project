@@ -36,7 +36,6 @@ const MovieGallery = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  console.log(location);
 
   const { watchedMovie } = useContext(MovieContext);
 
@@ -87,12 +86,12 @@ const MovieGallery = () => {
         ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
         ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
         ...(sortTerm ? { sort_by: sortTerm! } : {}),
+        page: parseInt(pageNumberTerm!).toString(),
       };
       getFilteredMovies(params).then((response) => {
         setMovies(response.results);
-        numberOfPagesAvailFilter(pageNumberTerm!).then((response) => {
+        numberOfPagesAvailFilter(params, pageNumberTerm!).then((response) => {
           setNumberOfPages(response);
-          console.log(response);
         });
       });
     } // If the user is not using the search or filters, shows user trending movies:

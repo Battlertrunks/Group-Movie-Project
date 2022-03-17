@@ -90,13 +90,14 @@ export const numberOfPagesAvail = (
 };
 
 export const numberOfPagesAvailFilter = (
+  newParams: Params,
   page: string
 ): Promise<PagesResponse> => {
   // console.log(query);
 
   return axios
     .get(`https://api.themoviedb.org/3/discover/movie`, {
-      params: { api_key: key, page: page },
+      params: { api_key: key, params: newParams, page: page },
     })
     .then((response) => {
       return response.data;
