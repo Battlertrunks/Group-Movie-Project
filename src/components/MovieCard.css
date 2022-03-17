@@ -25,9 +25,10 @@
 
 .Card h2 {
   height: 75px;
-  font-size: 145%;
+  /* font-size: 145%; */
   text-align: center;
   padding-top: 15px;
+  margin: 0 5px;
   font-family: "Sarala", sans-serif;
   font-weight: 400;
 }
