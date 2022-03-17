@@ -56,7 +56,9 @@ const Card = ({ singleMovieCard }: Props) => {
         to={`/movie/${encodeURIComponent(singleMovieCard.id?.toString())}`}
         className="movie-card-title"
       >
-        <h2>{singleMovieCard?.title}</h2>
+        <h2 style={{ fontSize: singleMovieCard?.title.length <= 20 ? 21 : 14 }}>
+          {singleMovieCard?.title}
+        </h2>
       </Link>
     </li>
   );
