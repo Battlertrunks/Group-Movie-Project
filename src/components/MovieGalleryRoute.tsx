@@ -1,55 +1,106 @@
 import { useContext, useEffect, useState } from "react";
-import { Params, useLocation, useSearchParams } from "react-router-dom";
+import {
+  Params,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import MovieContext from "../context/MovieContext";
 import MovieCardModel from "../models/MovieCard";
+import PagesResponse from "../models/PagesResponse";
 import {
   getFilteredMovies,
   getMovieBySearch,
   getTrendingMovies,
+  numberOfPagesAvail,
+  numberOfPagesAvailFilter,
 } from "../services/MovieTMDBService";
 import MovieCard from "./MovieCard";
 import "./MovieGalleryRoute.css";
+import PageButtons from "./PageButtons";
 
 const MovieGallery = () => {
   // Setting up the movies that will be displayed using useState.
   const [movies, setMovies] = useState<MovieCardModel[]>([]);
+  const [numberOfPages, setNumberOfPages] = useState<PagesResponse>({});
 
   // Getting the params when the user is filtering and searching.
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("query");
+  const pageNumberTerm: string | null = searchParams.get("page");
   const sortTerm: string | null = searchParams.get("sort_by");
   const voteAverageGTE: string | null = searchParams.get("vote_average.gte");
   const voteAverageLTE: string | null = searchParams.get("vote_average.lte");
   const genre: string | null = searchParams.get("with_genres");
 
+  const navigate = useNavigate();
+
   const location = useLocation();
 
   const { watchedMovie } = useContext(MovieContext);
 
+  const nextPage = (): void => {
+    const params: Params = {
+      ...(genre ? { with_genres: genre! } : {}),
+      ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
+      ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
+      ...(searchTerm ? { query: searchTerm } : {}),
+      ...(sortTerm ? { sort_by: sortTerm! } : {}),
+      page: (parseInt(pageNumberTerm!) + 1).toString(),
+    };
+    navigate(`${location.pathname}?${new URLSearchParams(params as any)}`);
+  };
+
+  const prevPage = (): void => {
+    const params: Params = {
+      ...(genre ? { with_genres: genre! } : {}),
+      ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
+      ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
+      ...(searchTerm ? { query: searchTerm } : {}),
+      ...(sortTerm ? { sort_by: sortTerm! } : {}),
+      page: (parseInt(pageNumberTerm!) - 1).toString(),
+    };
+    navigate(`${location.pathname}?${new URLSearchParams(params as any)}`);
+  };
+
   useEffect(() => {
-    // If the user used the search bar:
     if (searchTerm) {
-      getMovieBySearch(searchTerm).then((response) => {
+      // If the user used the search bar:
+      getMovieBySearch(searchTerm, pageNumberTerm!).then((response) => {
         setMovies(response.results);
+        numberOfPagesAvail(searchTerm, pageNumberTerm!).then((response) => {
+          setNumberOfPages(response);
+          console.log(response);
+        });
       });
     } // If the user is using the filters bar:
-    else if (sortTerm || voteAverageGTE || genre || voteAverageLTE) {
+    else if (
+      sortTerm ||
+      voteAverageGTE ||
+      genre ||
+      voteAverageLTE ||
+      pageNumberTerm
+    ) {
       const params: Params = {
         ...(genre ? { with_genres: genre! } : {}),
         ...(voteAverageGTE ? { "vote_average.gte": voteAverageGTE! } : {}),
         ...(voteAverageLTE ? { "vote_average.lte": voteAverageLTE! } : {}),
         ...(sortTerm ? { sort_by: sortTerm! } : {}),
+        page: parseInt(pageNumberTerm!).toString(),
       };
-      getFilteredMovies(params).then((response) => setMovies(response.results));
+      getFilteredMovies(params).then((response) => {
+        setMovies(response.results);
+        numberOfPagesAvailFilter(params, pageNumberTerm!).then((response) => {
+          setNumberOfPages(response);
+        });
+      });
     } // If the user is not using the search or filters, shows user trending movies:
     else if (location.pathname === "/movie/watched") {
       setMovies(watchedMovie);
-      console.log(location);
     } else {
       getTrendingMovies().then((response) => {
         setMovies(response.results);
       });
-      console.log(movies);
     }
   }, [
     searchTerm,
@@ -59,16 +110,29 @@ const MovieGallery = () => {
     genre,
     location,
     watchedMovie,
+    pageNumberTerm,
   ]); // Runs useEffect when these dependencies change
 
   // Displays the movie cards to the user:
   return (
     <div className="MovieGallery">
+      <PageButtons
+        pageNumTerm={pageNumberTerm!}
+        prev={prevPage}
+        next={nextPage}
+        numPages={numberOfPages!}
+      />
       <ul>
         {movies.map((movie) => (
           <MovieCard key={movie.id} singleMovieCard={movie} />
         ))}
       </ul>
+      <PageButtons
+        pageNumTerm={pageNumberTerm!}
+        prev={prevPage}
+        next={nextPage}
+        numPages={numberOfPages!}
+      />
     </div>
   );
 };

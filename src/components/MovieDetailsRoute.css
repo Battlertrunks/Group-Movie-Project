@@ -1,3 +1,7 @@
+body {
+  background: linear-gradient(rgba(37, 41, 51, 1), rgb(28, 29, 49));
+}
+
 .MovieDetailsRoute {
   margin: 10px 30px;
 }
@@ -27,6 +31,11 @@
 }
 
 .MovieDetailsRoute .back-btn i {
+  color: #fff;
+}
+
+.MovieDetailsRoute .back-btn i:hover {
+  transition: all 0.15s ease-in;
   color: rgb(168, 86, 86);
 }
 
@@ -37,12 +46,16 @@
 
 .MovieDetailsRoute .not-watched {
   color: #fff;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
+}
+
+.MovieDetailsRoute .not-watched:hover {
+  color: #81bbc7;
 }
 
 .MovieDetailsRoute .has-watched,
 .MovieDetailsRoute .has-watched i {
-  color: #81bbc7;
+  color: rgb(168, 86, 86);
   transition: color 0.3s ease;
 }
 
@@ -72,11 +85,15 @@
 }
 
 .MovieDetailsRoute .title-rating .rating {
-  width: 200px;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  color: rgb(255, 255, 119);
 }
 
 .MovieDetailsRoute .title-rating p {
   display: inline;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .MovieDetailsRoute .overview h3 {

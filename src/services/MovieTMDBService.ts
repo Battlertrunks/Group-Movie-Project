@@ -3,6 +3,7 @@ import Params from "../models/Params";
 import GenreResponse from "../models/GenreResponse";
 import MovieCardResponse from "../models/MovieCardResponse";
 import MovieDetailsResponse from "../models/MovieDetailsResponse";
+import PagesResponse from "../models/PagesResponse";
 
 // Gets the key from a .env.local file to prevent theft of api key.
 const key: string = process.env.REACT_APP_MDB_KEY || "";
@@ -36,11 +37,14 @@ export const getMovieById = (id: string): Promise<MovieDetailsResponse> => {
 };
 
 // Runs promise to bring back data of the search results from the API
-export const getMovieBySearch = (query: string): Promise<MovieCardResponse> => {
+export const getMovieBySearch = (
+  query: string,
+  page: string = "1"
+): Promise<MovieCardResponse> => {
   // console.log(query);
   return axios
     .get(`https://api.themoviedb.org/3/search/movie`, {
-      params: { api_key: key, query },
+      params: { api_key: key, query, page: page },
     })
     .then((response) => {
       return response.data;
@@ -66,4 +70,39 @@ export const getGenres = (): Promise<GenreResponse> => {
       params: { api_key: key },
     })
     .then((response) => response.data);
+};
+
+export const numberOfPagesAvail = (
+  query: string,
+  page: string = "1"
+): Promise<PagesResponse> => {
+  // console.log(query);
+  return axios
+    .get(`https://api.themoviedb.org/3/search/movie`, {
+      params: { api_key: key, query, page: page },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
+export const numberOfPagesAvailFilter = (
+  newParams: Params,
+  page: string
+): Promise<PagesResponse> => {
+  // console.log(query);
+
+  return axios
+    .get(`https://api.themoviedb.org/3/discover/movie`, {
+      params: { api_key: key, params: newParams, page: page },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
 };

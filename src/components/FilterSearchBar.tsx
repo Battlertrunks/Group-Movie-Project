@@ -26,7 +26,12 @@ const FilterBar = () => {
     };
 
     // Navigates to the URL path and inserts the params using the spread.
-    navigate(`/search/movies?${new URLSearchParams({ ...queryStringParams })}`);
+    navigate(
+      `/discover/movie?${new URLSearchParams({
+        ...queryStringParams,
+        page: "1",
+      })}`
+    );
   };
 
   // Runs once on every load.
@@ -45,8 +50,10 @@ const FilterBar = () => {
             id="sort-by"
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value="popularity.desc">Popular descending</option>
-            <option value="popularity.asc">Popular ascending</option>
+            <option value="popularity.desc">Popular</option>
+            <option value="vote_count.desc">Vote Count</option>
+            <option value="release_date.desc">Release descending</option>
+            <option value="release_date.asc">Release ascending</option>
           </select>
         </div>
         <div>
