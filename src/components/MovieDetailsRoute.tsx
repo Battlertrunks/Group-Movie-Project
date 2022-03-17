@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import MovieContext from "../context/MovieContext";
 import MovieDetailsResponse from "../models/MovieDetailsResponse";
@@ -36,6 +36,8 @@ const MovieDetailsRoute = () => {
   }
   // Getting the movie's ID if it is not undefined.
   const id: string | undefined = useParams().id;
+
+  const location = useLocation();
 
   // Runs useEffect when once and when the id changes from the dependency.
   useEffect(() => {
@@ -111,32 +113,57 @@ const MovieDetailsRoute = () => {
                 <div className="title-rating">
                   <div>
                     <h2>
-                      {/* just need year for the title release date */}
-                      {movie?.title}{" "}
+                      {movie?.title ? movie?.title : <p>Title not available</p>}{" "}
                       <span className="release-year">
-                        - ({movie?.release_date.substring(0, 4)})
+                        - (
+                        {movie?.release_date ? (
+                          movie?.release_date.substring(0, 4)
+                        ) : (
+                          <p>XXXX</p>
+                        )}
+                        )
                       </span>{" "}
                     </h2>{" "}
-                    <p>{movie?.tagline}</p>
+                    {movie?.tagline ? (
+                      <p>{movie?.tagline}</p>
+                    ) : (
+                      <p>Tagline not available</p>
+                    )}
                   </div>
                   <div className="rating">
-                    <p>{movie?.vote_average}</p>
+                    <p>
+                      {movie?.vote_average ? movie?.vote_average : <p>0</p>}
+                    </p>
                     <i className="fa-solid fa-star"></i>
                   </div>
                 </div>
-                {/* join method below show display all generes, check once functions finished */}
+                {/* join method below show display all genres, check once functions finished */}
 
                 <p>
-                  {movie?.genres.map((genre) => genre.name).join(" | ")} |{" "}
-                  {movie?.release_date}
+                  {movie?.genres[0] ? (
+                    movie?.genres.map((genre) => genre.name).join(" | ")
+                  ) : (
+                    <p>Genres Not Available</p>
+                  )}
                 </p>
-                <p>
-                  Run Time: {movie?.runtime} minutes | ({time})
-                </p>
+                <p>{movie?.release_date ? movie?.release_date : <p>XXXX</p>}</p>
+
+                {movie?.runtime ? (
+                  <p>
+                    Run Time: {movie?.runtime} minutes | ({time})
+                  </p>
+                ) : (
+                  <p>No Runtime available</p>
+                )}
               </div>
               <div className="overview">
                 <h3>Overview</h3>
-                <p>{movie?.overview}</p>
+
+                {movie?.overview ? (
+                  <p>{movie?.overview}</p>
+                ) : (
+                  <p>No Overview Available</p>
+                )}
               </div>
             </section>
           </div>

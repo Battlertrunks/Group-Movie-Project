@@ -11,6 +11,7 @@ const SearchInput = () => {
     e.preventDefault(); // Stops reload
     // Navigates to this path with the search query value
     navigate(`/search/movies?${new URLSearchParams({ query, page: "1" })}`);
+    setQuery("");
   };
 
   // Displays the search bar to the user:
@@ -21,6 +22,7 @@ const SearchInput = () => {
         name="search-movie"
         id="search-movie"
         placeholder="Search"
+        value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button>

@@ -21,12 +21,6 @@ const Header = () => {
                 <button>Watched</button>
               </Link>
             </li>
-            <li>
-              <p>|</p>
-            </li>
-            <li>
-              <button>Favorites</button>
-            </li>
           </ul>
         </nav>
       </div>
