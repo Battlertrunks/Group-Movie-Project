@@ -63,6 +63,7 @@ const FilterBar = () => {
             id="genres"
             onChange={(e) => setGenre(e.target.value)}
           >
+            <option value="">Select Genre</option>
             {genres.map((genre) => (
               <option value={genre.id} key={genre.id}>
                 {genre.name}
@@ -78,17 +79,17 @@ const FilterBar = () => {
             className="number-rating"
             onChange={(e) => setVoteAverageGTE(e.target.value)}
           >
-            <option value=""></option>
+            <option value="">Select Rating</option>
             <option value="10">10</option>
-            <option value="9"> &#62; 9</option>
-            <option value="8"> &#62; 8</option>
-            <option value="7"> &#62; 7</option>
-            <option value="6"> &#62; 6</option>
-            <option value="5"> &#62; 5</option>
-            <option value="4"> &#62; 4</option>
-            <option value="3"> &#62; 3</option>
-            <option value="2"> &#62; 2</option>
-            <option value="1"> &#62; 1</option>
+            <option value="9">9</option>
+            <option value="8">8</option>
+            <option value="7">7</option>
+            <option value="6">6</option>
+            <option value="5">5</option>
+            <option value="1">1</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
           </select>
         </div>
         {/* <div>

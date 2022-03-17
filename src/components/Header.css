@@ -19,6 +19,10 @@
   position: relative;
 }
 
+.Header h1:hover {
+  color: rgb(168, 86, 86);
+}
+
 .Header .logo {
   text-decoration: none;
   position: relative;
@@ -40,8 +44,13 @@
   border: none;
   text-decoration: underline;
   color: white;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
+}
+
+.Header .watchedButton:hover {
+  color: rgb(168, 86, 86);
+  font-weight: 600;
 }
 
 .Header .header-bg-color {

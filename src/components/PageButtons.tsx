@@ -16,7 +16,10 @@ const PageButtons = ({ pageNumTerm, prev, next, numPages }: Props) => {
       ) : (
         <button disabled>Previous Page</button>
       )}
-      <p>{pageNumTerm}</p>
+      <p>
+        {pageNumTerm} {pageNumTerm ? " of " : ""}{" "}
+        {pageNumTerm ? numPages.total_pages : ""}
+      </p>
       {parseInt(pageNumTerm!) < numPages.total_pages! ? (
         <button onClick={next}>Next Page</button>
       ) : (
