@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <div className="Footer">
-      <p>Sawddit</p>
+      <Link to="/">
+        <p>Sawddit</p>
+      </Link>
       <ul className="icon-list">
         <li>
           <a href="#">
@@ -29,9 +32,11 @@ const Footer = () => {
           </a>
         </li>
       </ul>
-      <p>
-        <i className="fa-solid fa-copyright"></i> 2022 Sawddit inc.
-      </p>
+      <Link to="/">
+        <p>
+          <i className="fa-solid fa-copyright"></i> 2022 Sawddit inc.
+        </p>
+      </Link>
     </div>
   );
 };
