@@ -17,6 +17,8 @@ const SearchInput = () => {
   // Displays the search bar to the user:
   return (
     <form className="SearchInput" onSubmit={(e) => submitHandler(e)}>
+      {/* Uncomment line below for test purpose */}
+      {/* <p>{query}</p>  */}
       <input
         type="text"
         name="search-movie"

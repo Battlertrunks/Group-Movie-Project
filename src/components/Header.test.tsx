@@ -9,10 +9,10 @@ test("Renders the title", () => {
     </BrowserRouter>
   );
 
-  const firstSpanEl = screen.getByText("Sawd");
-  const secondSpanEl = screen.getByText("dit");
+  const firstSpanEl = screen.getByRole("heading", { name: /sawd dit/i });
+  // const secondSpanEl = screen.getByText("dit");
   expect(firstSpanEl).toBeInTheDocument();
-  expect(secondSpanEl).toBeInTheDocument();
+  // expect(secondSpanEl).toBeInTheDocument();
 });
 
 test("Renders button to Watched", () => {
@@ -21,6 +21,6 @@ test("Renders button to Watched", () => {
       <Header />
     </BrowserRouter>
   );
-  const linkWatchedEl = screen.getByRole("button", { name: "Watched" });
+  const linkWatchedEl = screen.getByRole("button", { name: "Saw It" });
   expect(linkWatchedEl).toBeInTheDocument();
 });

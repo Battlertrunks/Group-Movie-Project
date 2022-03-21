@@ -18,7 +18,7 @@ const Header = () => {
           <ul>
             <li>
               <Link to="/movie/watched">
-                <button className="watchedButton">Watched</button>
+                <button className="watchedButton">Saw It</button>
               </Link>
             </li>
           </ul>
