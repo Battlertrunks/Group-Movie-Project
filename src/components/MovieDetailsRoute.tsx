@@ -60,7 +60,7 @@ const MovieDetailsRoute = () => {
 
   // Displaying the movie's information to the screen
   return (
-    <div className="MovieDetailsRoute">
+    <div className="MovieDetailsRoute" aria-label="movie-details">
       {movie ? (
         <>
           <img
@@ -87,7 +87,7 @@ const MovieDetailsRoute = () => {
                   ></i>
                 </p>
               ) : (
-                <p className="not-watched">
+                <p className="not-watched" aria-label="not-watched">
                   <i
                     className="fa-solid fa-clapperboard"
                     onClick={() => {

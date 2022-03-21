@@ -49,6 +49,7 @@ const FilterBar = () => {
             name="sort-by"
             id="sort-by"
             onChange={(e) => setSortBy(e.target.value)}
+            aria-label="label-test"
           >
             <option value="popularity.desc">Popular</option>
             <option value="vote_count.desc">Vote Count</option>
@@ -78,6 +79,7 @@ const FilterBar = () => {
             id="greaterRating"
             className="number-rating"
             onChange={(e) => setVoteAverageGTE(e.target.value)}
+            aria-label="label-rating-test"
           >
             <option value="">Select Rating</option>
             <option value="10">10</option>
